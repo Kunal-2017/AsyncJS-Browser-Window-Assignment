@@ -1,0 +1,89 @@
+Que6 .Describe the purpose and usage of the localStorage and sessionStorage APIs in web development. Give suitable examples for each.
+
+Sol:
+The localStorage and sessionStorage APIs are part of the Web Storage API that allows developers to store data on the client's browser. They are used to persist data across sessions or within a single session, respectively. Here’s a detailed look at each:
+
+localStorage :
+Purpose:
+
+localStorage is designed for storing data with no expiration time. Data stored in localStorage persists even after the browser is closed and reopened.
+Usage:
+
+Useful for storing user preferences, settings, or other data that should be retained across browser sessions.
+Data is stored as key-value pairs.
+Examples:
+
+1.Storing Data:
+
+/*js code
+// Store user preferences
+localStorage.setItem('theme', 'dark');
+*/
+2.Retrieving Data:
+
+/*js code
+// Get user preferences
+const theme = localStorage.getItem('theme');
+console.log(theme); // Outputs: 'dark'
+*/
+3.Removing Data:
+/*js code
+// Remove specific item
+localStorage.removeItem('theme');
+*/
+4.Clearing All Data:
+/* js code
+// Clear all items in localStorage
+localStorage.clear();
+*/
+Use Case:
+Remembering a user’s theme preference on a website, so they don’t need to select it every time they visit the site.
+
+sessionStorage:
+Purpose:
+
+sessionStorage is intended for storing data that is only needed for the duration of the page session. Data stored in sessionStorage is cleared when the page session ends, which typically happens when the page is closed or refreshed.
+Usage:
+
+Useful for temporary data that should not persist beyond the current session, such as form data that needs to be preserved across page reloads but not across different browser sessions.
+Data is stored as key-value pairs.
+Examples:
+
+1.Storing Data:
+
+/*js code
+// Store data for the current session
+sessionStorage.setItem('formData', JSON.stringify({ name: 'John', age: 30 }));
+*/
+2.Retrieving Data:
+
+/*js code
+// Get data from sessionStorage
+const formData = JSON.parse(sessionStorage.getItem('formData'));
+console.log(formData); // Outputs: { name: 'John', age: 30 }
+*/
+3.Removing Data:
+
+/*js code
+// Remove specific item
+sessionStorage.removeItem('formData');
+*/
+4.Clearing All Data:
+
+/*js code
+// Clear all items in sessionStorage
+sessionStorage.clear();*/
+Use Case:
+
+Preserving user input in a form across page reloads within the same session. For example, if a user fills out a form and refreshes the page, the form data can be retained using sessionStorage.
+
+Key Differences:
+1.Persistence:
+
+localStorage persists data indefinitely until it is explicitly removed.
+sessionStorage only persists data for the duration of the page session.
+
+2.Scope:
+localStorage data is shared across all tabs and windows of the same origin.
+sessionStorage data is isolated to the specific tab or window and is not shared.
+These APIs provide a straightforward way to manage client-side storage, making them useful for a range of scenarios from temporary storage of form data to long-term user preferences.

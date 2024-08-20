@@ -1,0 +1,98 @@
+Que4 Compare Promises to callbacks and discuss why Promises are preferred for managing asynchronous
+code.
+
+Sol:
+When dealing with asynchronous operations in JavaScript, both callbacks and Promises are methods for handling results once an operation completes. However, Promises offer several advantages over callbacks that make them preferable for managing asynchronous code.
+
+Callbacks
+Definition: A callback is a function passed as an argument to another function, which is then invoked after the completion of a certain task.
+
+Example:
+/*js code
+function fetchData(callback) {
+    setTimeout(() => {
+        callback(null, "Data fetched");
+    }, 1000);
+}
+
+fetchData((error, data) => {
+    if (error) {
+        console.error(error);
+    } else {
+        console.log(data);
+    }
+});
+*/
+1. Issues with Callbacks:
+
+Callback Hell: Nested callbacks can lead to deeply nested code, making it difficult to read and maintain. This is often referred to as "callback hell."
+
+/* js code
+fetchData((error, data) => {
+    if (error) {
+        console.error(error);
+    } else {
+        processData(data, (error, processedData) => {
+            if (error) {
+                console.error(error);
+            } else {
+                saveData(processedData, (error, result) => {
+                    if (error) {
+                        console.error(error);
+                    } else {
+                        console.log(result);
+                    }
+                });
+            }
+        });
+    }
+});
+*/
+
+2. Error Handling: Error handling can be cumbersome with callbacks. You have to handle errors at every level of nested callbacks.
+
+3. Inversion of Control: Callbacks can lead to inversion of control, where the function passed as a callback controls the flow of execution.
+
+
+Promises:
+Definition: A Promise represents the eventual completion (or failure) of an asynchronous operation and its resulting value. It provides a more structured way to handle asynchronous operations compared to callbacks.
+
+/* js code
+function fetchData() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("Data fetched");
+        }, 1000);
+    });
+}
+
+fetchData()
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+*/
+
+Advantages of Promises:
+
+1. Chaining: Promises allow chaining of asynchronous operations using .then() and .catch(), making the code cleaner and easier to read.
+/* js code
+fetchData()
+    .then(data => processData(data))
+    .then(processedData => saveData(processedData))
+    .then(result => console.log(result))
+    .catch(error => console.error(error));
+    */
+
+2. Error Handling: Promises provide a unified way to handle errors using .catch(). Errors in any part of the promise chain are caught by the nearest .catch() block.
+
+/*js code
+fetchData()
+    .then(data => processData(data))
+    .then(processedData => saveData(processedData))
+    .then(result => console.log(result))
+    .catch(error => console.error("Error:", error));
+*/
+3. Improved Readability: Promises flatten nested code, making it easier to understand and maintain.
+
+4. Control Flow: Promises provide better control over asynchronous operations and allow easier management of multiple concurrent tasks.
+
+5. Avoiding Callback Hell: Promises reduce the likelihood of callback hell by enabling chaining and handling of asynchronous operations in a more linear and readable fashion.

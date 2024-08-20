@@ -1,0 +1,104 @@
+Que5 List and briefly explain some common Browser APIs available to JavaScript developers.
+
+Sol:
+JavaScript developers have access to a variety of Browser APIs that provide functionality to interact with the web browser and the environment in which web applications run. Here are some common Browser APIs:
+
+1. DOM (Document Object Model) API :
+Purpose: Allows manipulation of the document structure, style, and content.
+Usage: Modify HTML elements, attributes, and styles; respond to user events.
+Example:
+/*js code
+document.getElementById('myElement').innerText = 'Hello, world!';
+*/
+2. Fetch API :
+Purpose: Provides a modern way to make network requests (HTTP/HTTPS) and handle responses.
+Usage: Fetch data from a server and process the response.
+Example:
+/* js code
+fetch('https://api.example.com/data')
+  .then(response => response.json())
+  .then(data => console.log(data));
+  */
+3. LocalStorage & SessionStorage APIs :
+Purpose: Allows storing data on the client side in the browser's local storage or session storage.
+Usage: Persist user data or preferences across sessions (LocalStorage) or within a single session (SessionStorage).
+Example:
+/* js code
+localStorage.setItem('username', 'JohnDoe');
+console.log(localStorage.getItem('username'));
+*/
+4. Geolocation API :
+Purpose: Provides access to the geographic location of the device.
+Usage: Retrieve the user's current location for location-based services.
+Example:
+/*js code
+navigator.geolocation.getCurrentPosition(position => {
+  console.log(position.coords.latitude, position.coords.longitude);
+});
+*/
+5. Web Storage API :
+Purpose: Enables storing data locally on the user's browser.
+Usage: Use localStorage and sessionStorage to store key-value pairs.
+Example:
+/*
+localStorage.setItem('theme', 'dark');
+console.log(localStorage.getItem('theme'));
+*/
+6. Canvas API :
+Purpose: Provides a way to draw graphics, such as shapes and images, on a <canvas> element.
+Usage: Create and manipulate graphics and animations in a web application.
+Example:
+/*
+const canvas = document.getElementById('myCanvas');
+const ctx = canvas.getContext('2d');
+ctx.fillStyle = 'red';
+ctx.fillRect(10, 10, 100, 100);
+*/
+7. WebSocket API :
+Purpose: Allows full-duplex communication between the client and server over a single, long-lived connection.
+Usage: Enable real-time, bidirectional communication for applications like chat and live updates.
+Example:
+/*
+const socket = new WebSocket('wss://example.com/socket');
+socket.onmessage = event => console.log(event.data);
+socket.send('Hello Server!');
+*/
+8. IndexedDB API :
+Purpose: Provides a low-level API for storing large amounts of structured data.
+Usage: Store and query large datasets on the client side.
+Example:
+/*
+const request = indexedDB.open('myDatabase', 1);
+request.onsuccess = event => {
+  const db = event.target.result;
+  // Work with the database
+};
+*/
+9. Service Worker API :
+Purpose: Enables background scripts to handle network requests and cache resources, allowing offline functionality.
+Usage: Implement Progressive Web Apps (PWAs) with offline capabilities and background synchronization.
+Example:
+/*
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js')
+    .then(registration => console.log('Service Worker registered:', registration))
+    .catch(error => console.error('Service Worker registration failed:', error));
+}
+*/
+10. Notification API :
+Purpose: Allows web applications to send notifications to users, even when the web page is not visible.
+Usage: Provide updates or alerts to users through browser notifications.
+Example:
+/*
+if (Notification.permission === 'granted') {
+  new Notification('Hello, world!');
+} else {
+  Notification.requestPermission().then(permission => {
+    if (permission === 'granted') {
+      new Notification('Hello, world!');
+    }
+  });
+}
+*/
+
+These APIs provide a range of capabilities to enhance web applications, from interacting with the DOM to handling network requests and storing data.

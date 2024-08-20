@@ -1,0 +1,49 @@
+Que1. Define XMLHttpRequest object, and How is it used in AJAX?
+
+Sol: The XMLHttpRequest object is a JavaScript API that allows web pages to make HTTP requests to a server asynchronously. It is a core part of the AJAX (Asynchronous JavaScript and XML) technique used for creating dynamic and interactive web applications.
+
+Definition:
+XMLHttpRequest Object: It's a built-in JavaScript object used to interact with servers and fetch data from them without having to reload the entire web page.
+
+Key Features:
+1.Asynchronous Requests: Can send and receive data asynchronously, meaning the web page can continue to operate while waiting for a response.
+
+2.Synchronous Requests: It can also be used synchronously, but this is generally discouraged because it can make the browser unresponsive.
+
+Basic Usage in AJAX:
+1. Creating an Instance:
+var xhr = new XMLHttpRequest();
+
+2. Configuring the Request:
+You need to specify the request method (GET, POST, etc.) and the URL of the resource. 
+
+xhr.open('GET', 'https://api.example.com/data', true);
+
+3. Handling the Response:
+You can set up a callback function to handle the server's response.
+
+xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        // Process the response data
+        console.log(xhr.responseText);
+    }
+};
+
+4.Sending the Request:
+Finally, send the request to the server.
+
+xhr.send();
+
+Example:
+Here’s a simple example of using XMLHttpRequest to get data from a server:
+
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://api.example.com/data', true);
+xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        console.log(xhr.responseText);
+    }
+};
+xhr.send();
+
+In modern web development, XMLHttpRequest is often replaced by the fetch API, which provides a more powerful and flexible feature set for handling HTTP requests and responses. However, understanding XMLHttpRequest is still important as it forms the foundation of AJAX techniques.

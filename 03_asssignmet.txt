@@ -1,0 +1,65 @@
+Que3 What is the same-origin policy in the context of AJAX requests, and how can you work around it?
+
+Sol:
+
+The same-origin policy is a security feature implemented in web browsers to prevent malicious scripts on one origin (domain, protocol, and port) from accessing data on another origin. This policy is crucial for protecting user data and ensuring that sensitive information isn't exposed to unauthorized parties.
+
+What is the Same-Origin Policy?
+The same-origin policy restricts how a document or script loaded from one origin can interact with resources from another origin. For AJAX requests, this means that a web page can only make requests to the same domain, protocol, and port from which it was served.
+
+Why It's Important:
+Security: It helps prevent cross-site request forgery (CSRF) and cross-site scripting (XSS) attacks by isolating content from different origins.
+
+Data Protection: It ensures that scripts on one site cannot access sensitive information from another site without permission.
+
+How to Work Around the Same-Origin Policy:
+1. CORS (Cross-Origin Resource Sharing):
+
+Definition: CORS is a protocol that allows web servers to specify who can access their resources from different origins. By setting appropriate headers, a server can permit cross-origin requests.
+
+Implementation: Servers include CORS headers like Access-Control-Allow-Origin in their responses to specify which domains are allowed to access their resources.
+
+/* http code
+Access-Control-Allow-Origin: https://example.com */
+
+Example:
+/* Js Code:
+// Client-side request
+fetch('https://api.example.com/data')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error));
+  */
+
+2. JSONP (JSON with Padding):
+
+Definition: JSONP is a technique used to overcome the same-origin policy by using <script> tags to load data. The server returns data wrapped in a function call that the client defines.
+Implementation: The server returns JSON data wrapped in a function call, and the client provides a callback function.
+Example:
+/* html code
+<script src="https://api.example.com/data?callback=myCallback"></script>
+<script>
+  function myCallback(data) {
+    console.log(data);
+  }
+</script>
+*/
+
+3. Proxy Server:
+
+Definition: A proxy server acts as an intermediary between the client and the target server. By making requests through the proxy, you can bypass the same-origin policy.
+
+Implementation: Set up a server-side proxy that fetches data from the target server and returns it to the client.
+Example:
+/* js code
+// Client-side request to the proxy
+fetch('/proxy?url=https://api.example.com/data')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error));
+*/
+4. Server-Side Request:
+
+Definition: Perform cross-origin requests from the server rather than the client. The server can then process the data and send it to the client.
+Implementation: This approach requires that you handle cross-origin requests on your server side, bypassing the client-side restriction.
+
